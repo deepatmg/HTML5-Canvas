@@ -29,7 +29,7 @@ var c = canvas.getContext('2d');
 
 
 /*to generate random colors*/
-/*function getRandomColor(){
+function getRandomColor(){
 	var letters = '0123456789ABCDEF';
 	var color = '#';
 	for (var i = 0; i < 6; i++) {
@@ -38,7 +38,7 @@ var c = canvas.getContext('2d');
 	return color;
 }
 
-for (var i = 0; i < 200; i++) {
+/*for (var i = 0; i < 200; i++) {
 	var x = Math.random() * window.innerWidth;
 	var y = Math.random() * window.innerHeight;
 	c.beginPath();
@@ -54,7 +54,7 @@ var dx = (Math.random() - 0.5) * 8;
 var dy = (Math.random() - 0.5) * 8;
 var radius = 30;*/
 
-function Circle(x, y, dx, dy, radius){
+function Circle(x, y, dx, dy, radius, colorFill){
 	this.x = x;
 	this.y = y;
 	this.dx = dx;
@@ -63,9 +63,10 @@ function Circle(x, y, dx, dy, radius){
 	this.draw = function (){
 		c.beginPath();
 		c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-		c.strokeStyle = 'blue';
+		c.strokeStyle = colorFill;
 		c.stroke();
-		// c.fill();
+		c.fillStyle = colorFill;
+		c.fill();
 	}
 
 	this.update = function(){
@@ -93,8 +94,8 @@ for (var i = 0; i < 100; i++) {
 	var y = Math.random() * (window.innerHeight - radius * 2) + radius;
 	var dx = (Math.random() - 0.5);
 	var dy = (Math.random() - 0.5);
-
-	circleArray.push(new Circle(x, y, dx, dy, radius));
+	var colorFill = getRandomColor();
+	circleArray.push(new Circle(x, y, dx, dy, radius, colorFill));
 }
 
 
